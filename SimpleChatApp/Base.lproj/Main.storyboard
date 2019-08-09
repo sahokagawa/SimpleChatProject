@@ -51,10 +51,15 @@
                                 <rect key="frame" x="302" y="7" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="didClickButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="08o-dk-1SA"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="roomNameTextField" destination="4e2-Jo-v5N" id="RPM-qK-z2U"/>
+                        <outlet property="tableView" destination="Q8v-F5-AKs" id="DqK-ve-QrD"/>
                         <segue destination="yr2-o6-zUo" kind="show" id="TSX-pE-OFV"/>
                     </connections>
                 </viewController>
@@ -62,10 +67,10 @@
             </objects>
             <point key="canvasLocation" x="1114" y="763"/>
         </scene>
-        <!--View Controller-->
+        <!--Room View Controller-->
         <scene sceneID="zgF-dR-mQE">
             <objects>
-                <viewController id="yr2-o6-zUo" sceneMemberID="viewController">
+                <viewController id="yr2-o6-zUo" customClass="RoomViewController" customModule="SimpleChatApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mPj-33-bfp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -94,6 +99,9 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                         <state key="normal" title="送信"/>
+                                        <connections>
+                                            <action selector="didClickButton:" destination="yr2-o6-zUo" eventType="touchUpInside" id="JWK-a4-k3a"/>
+                                        </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZcL-Fs-qU1">
                                         <rect key="frame" x="8" y="39" width="284" height="30"/>
@@ -109,6 +117,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="s5x-4b-hap"/>
                     </view>
+                    <connections>
+                        <outlet property="messageTextField" destination="ZcL-Fs-qU1" id="yHD-Tr-xe2"/>
+                        <outlet property="tableView" destination="IkU-02-lt8" id="JHg-Ab-fi2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="70n-Zk-eZV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

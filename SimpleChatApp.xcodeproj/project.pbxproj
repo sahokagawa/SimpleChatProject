@@ -3,11 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		31053D6422FD00330030E5B2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 31053D6322FD00330030E5B2 /* GoogleService-Info.plist */; };
+		31053D6622FD031F0030E5B2 /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31053D6522FD031F0030E5B2 /* RoomViewController.swift */; };
+		31053D6A22FD04CC0030E5B2 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31053D6922FD04CC0030E5B2 /* Room.swift */; };
+		31053D6C22FD068B0030E5B2 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31053D6B22FD068B0030E5B2 /* Message.swift */; };
 		318C1F2522FBD1640051FA3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C1F2422FBD1640051FA3A /* AppDelegate.swift */; };
 		318C1F2722FBD1640051FA3A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318C1F2622FBD1640051FA3A /* ViewController.swift */; };
 		318C1F2A22FBD1640051FA3A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 318C1F2822FBD1640051FA3A /* Main.storyboard */; };
@@ -19,6 +22,9 @@
 /* Begin PBXFileReference section */
 		08F8C7E397A6B68072DA76DF /* Pods-SimpleChatApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleChatApp.release.xcconfig"; path = "Target Support Files/Pods-SimpleChatApp/Pods-SimpleChatApp.release.xcconfig"; sourceTree = "<group>"; };
 		31053D6322FD00330030E5B2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		31053D6522FD031F0030E5B2 /* RoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
+		31053D6922FD04CC0030E5B2 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		31053D6B22FD068B0030E5B2 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		318C1F2122FBD1640051FA3A /* SimpleChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		318C1F2422FBD1640051FA3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		318C1F2622FBD1640051FA3A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -42,6 +48,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		31053D6722FD035A0030E5B2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				31053D6522FD031F0030E5B2 /* RoomViewController.swift */,
+				318C1F2622FBD1640051FA3A /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		31053D6822FD049E0030E5B2 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				31053D6922FD04CC0030E5B2 /* Room.swift */,
+				31053D6B22FD068B0030E5B2 /* Message.swift */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
 		318C1F1822FBD1640051FA3A = {
 			isa = PBXGroup;
 			children = (
@@ -63,8 +87,9 @@
 		318C1F2322FBD1640051FA3A /* SimpleChatApp */ = {
 			isa = PBXGroup;
 			children = (
+				31053D6822FD049E0030E5B2 /* Objects */,
+				31053D6722FD035A0030E5B2 /* Controllers */,
 				318C1F2422FBD1640051FA3A /* AppDelegate.swift */,
-				318C1F2622FBD1640051FA3A /* ViewController.swift */,
 				318C1F2822FBD1640051FA3A /* Main.storyboard */,
 				318C1F2B22FBD1650051FA3A /* Assets.xcassets */,
 				318C1F2D22FBD1650051FA3A /* LaunchScreen.storyboard */,
@@ -88,7 +113,6 @@
 				C02F34B3376046555FDF73E5 /* Pods-SimpleChatApp.debug.xcconfig */,
 				08F8C7E397A6B68072DA76DF /* Pods-SimpleChatApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -208,7 +232,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31053D6622FD031F0030E5B2 /* RoomViewController.swift in Sources */,
 				318C1F2722FBD1640051FA3A /* ViewController.swift in Sources */,
+				31053D6C22FD068B0030E5B2 /* Message.swift in Sources */,
+				31053D6A22FD04CC0030E5B2 /* Room.swift in Sources */,
 				318C1F2522FBD1640051FA3A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
