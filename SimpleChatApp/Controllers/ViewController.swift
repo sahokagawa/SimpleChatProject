@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewController: UIViewController {
     
@@ -26,17 +27,73 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         //おまじない
         tableView.delegate = self
         tableView.dataSource = self
+        
+        //変更されたかどうかを検知するリスナー　　複数人でデータを変更する可能性ある　　roomをずーと監視してくれる
+        //Firestoreへ接続
+        let db = Firestore.firestore()
+        //コレクションroomが変更されたか検知するリスナーを登録
+        db.collection("room").addSnapshotListener { (querySnapshot, error) in
+        //print("変更されました")
+            
+            //querySnapshot?.documents ：room内の全件を取得　それをdocumentsに入れる
+            guard let documents = querySnapshot?.documents else{
+                //roomの中に何もない場合、処理を中断
+                return
+            }
+            
+            //変数documentsにroomに全データがあるとき、それを元に配列を作成し、画面を更新する
+            //querySnapshot?.documentsじゃ配列は作れないから新しい変数作る
+            var results: [Room] = []
+            
+            //for文で回して配列に入れてく
+            for document in documents{
+                //documentの中には、名前と日付入ってる
+                let roomName = document.get("name") as! String
+                let room = Room(name: roomName, documentId: document.documentID)   //インスタンス化
+                //作ったroomをresultsに入れる
+                results.append(room)
+            }
+            //変数roomsを書き換える
+            self.rooms = results
+        }
     }
     
     
 
     //ボタンをつなげる　　左のbuttonの方からつなげること！
+    // ボタンがクリックされたら、トークルームが追加されるようにしたい！
     @IBAction func didClickButton(_ sender: UIButton) {
+        //空文字のトークルームなんてないよね
+        if roomNameTextField.text!.isEmpty{
+            //処理中断
+            return
+        }
+        
+        //部屋の名前を変数に保存   本当はオプショナルバインディングとか使った方がいいけど、今回は！で無理やり剥がす
+        let roomName = roomNameTextField.text!
+        
+        //Firestoreにの接続情報を取得
+        let db = Firestore.firestore()
+        //FIrestoreに新しい部屋を追加　　　新しくroomっていうこコレクション作ってくださいねー！
+        //MYSQLのcreate tableとかと違って、勝手に追加してくれる　（？？？ここよくわからん？）
+        
+        //ディクショナリーで値（登録データ）を渡す　    キー　name createAt
+        db.collection("room").addDocument(data: ["name":roomName,
+                                                 "createAt":FieldValue.serverTimestamp()
+        ]) { err in
+            
+            if let err = err{
+                print("チャットルームの作成に失敗しました")
+                print(err)
+            }else{
+                print("チャットルームを作成しました：\(roomName)")
+            }
+        }
+        roomNameTextField.text = ""
     }
     
     
@@ -55,7 +112,7 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource{
         cell.textLabel?.text = room.name
         //structの中のroomの名前欲しい
         
-        //右矢印設定
+        //右矢印設定  セルの右側に出てくるやつや！
         cell.accessoryType = .disclosureIndicator
         
         return cell

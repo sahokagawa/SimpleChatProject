@@ -50,7 +50,7 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Zzy-Ed-FWH">
                                 <rect key="frame" x="302" y="7" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="ルーム作成"/>
                                 <connections>
                                     <action selector="didClickButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="08o-dk-1SA"/>
                                 </connections>
