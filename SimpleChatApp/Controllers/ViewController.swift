@@ -73,10 +73,11 @@ class ViewController: UIViewController {
             return
         }
         
+        //以下、入力された場合
         //部屋の名前を変数に保存   本当はオプショナルバインディングとか使った方がいいけど、今回は！で無理やり剥がす
         let roomName = roomNameTextField.text!
         
-        //Firestoreにの接続情報を取得
+        //Firestoreにの接続情報を取得　　決まり文句
         let db = Firestore.firestore()
         //FIrestoreに新しい部屋を追加　　　新しくroomっていうこコレクション作ってくださいねー！
         //MYSQLのcreate tableとかと違って、勝手に追加してくれる　（？？？ここよくわからん？）
@@ -119,4 +120,30 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     
+   //セルがクリックされたら 次の画面に遷移するようにする
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        //roomsって配列の中にいろんな情報入ってる
+        //どこのセルかはindexPath
+        //じゃあ、選択された一つの部屋の情報を渡しますよー！
+        let room = rooms[indexPath.row]
+        
+        //次の画面に行って前の画面に戻ってきた時に選択されてグレーになってるっていう状態を解除
+        //固定文！
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        
+        performSegue(withIdentifier: "toRoom", sender: room.documentId)
+    }
+    
+    
+    //その情報は次の画面のこの箱に渡すよー！
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toRoom" {
+            
+            let roomVC = segue.destination as! RoomViewController
+            roomVC.documentId = sender as! String
+            
+        }
+    }
 }
