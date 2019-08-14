@@ -37,6 +37,37 @@ class RoomViewController: UIViewController {
         tableView.dataSource = self
 
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //firestoreに接続
+        let db = Firestore.firestore()
+        //選ばれた部屋のメッセージを監視する
+        db.collection("room").document(documentId).collection("message").order(by: "createdAt", descending: true).addSnapshotListener { (querySnapshot
+            //descending: true 昇順　false 降順　　　createdA キー名
+            , error) in
+                print("送信されました")
+                
+                //querySnapshotがもっているドキュメントを取得
+                guard let documents = querySnapshot?.documents else {
+                    //取得したドキュメントがからの場合処理を中断
+                    return
+                }
+                //取得したドキュメントをもとに画面を更新
+                var messages: [Message] = []
+                
+                for document in documents {
+                    let documentId = document.documentID
+                    let text = document.get("text") as! String
+                    
+                    let message = Message(documentId: documentId, text: text)
+                    messages.append(message)
+                    
+            }
+                self.messages = messages
+        }
+    }
+    
+    
 //  つなげる
     @IBAction func didClickButton(_ sender: UIButton) {
         //送信ボタンがクリックされた時の処理
@@ -70,7 +101,7 @@ class RoomViewController: UIViewController {
                 print("メッセージの送信に失敗しました")
                 print(err)
             }else{
-                print("メッセージを成功しました")
+                print("メッセージの送信に成功しました")
             }
             
         }
